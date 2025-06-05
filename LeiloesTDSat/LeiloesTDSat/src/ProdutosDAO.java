@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProdutosDAO {
@@ -36,6 +37,40 @@ public class ProdutosDAO {
 
         }
 
+    }
+    
+    public static List<ProdutosDTO> listarTodos(){
+        List<ProdutosDTO> pro = new ArrayList();
+        
+        try{
+            conectaDAO conexao = new conectaDAO();
+            conexao.conectar();
+            
+            String sql = "SELECT p.id, p.nome, p.valor, p.status "
+                    + "FROM Produtos p";
+            
+            PreparedStatement ps = conexao.getConexao().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                ProdutosDTO p = new ProdutosDTO();
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setValor(rs.getInt("valor"));
+                p.setStatus(rs.getString("status"));
+                
+                
+                pro.add(p);
+                
+            }
+            
+            conexao.desconectar();
+            
+        }catch(SQLException se){
+            System.err.println("Erro ao Listar Animais: " + se.getMessage());
+        }
+        
+        return pro;
     }
     
 }

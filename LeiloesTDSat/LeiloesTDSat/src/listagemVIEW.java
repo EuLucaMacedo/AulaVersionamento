@@ -18,7 +18,7 @@ public class listagemVIEW extends javax.swing.JFrame {
      */
     public listagemVIEW() {
         initComponents();
-        //listarProdutos();
+        listarProdutos();
     }
 
     /**
@@ -140,8 +140,7 @@ public class listagemVIEW extends javax.swing.JFrame {
         
         ProdutosDAO produtosdao = new ProdutosDAO();
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
-        //listarProdutos();
+        ;
     }//GEN-LAST:event_btnVenderActionPerformed
 
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
@@ -201,25 +200,25 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
 
-   /* private void listarProdutos(){
+    private void listarProdutos(){
         try {
             ProdutosDAO produtosdao = new ProdutosDAO();
             
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
             
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
+            ArrayList<ProdutosDTO> listar = (ArrayList<ProdutosDTO>) produtosdao.listarTodos();
             
-            for(int i = 0; i < listagem.size(); i++){
+            for(int i = 0; i < listar.size(); i++){
                 model.addRow(new Object[]{
-                    listagem.get(i).getId(),
-                    listagem.get(i).getNome(),
-                    listagem.get(i).getValor(),
-                    listagem.get(i).getStatus()
+                    listar.get(i).getId(),
+                    listar.get(i).getNome(),
+                    listar.get(i).getValor(),
+                    listar.get(i).getStatus()
                 });
             }
         } catch (Exception e) {
         }
     
-    }*/
+    }
 }
